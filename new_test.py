@@ -129,13 +129,13 @@ def fun():
 #    print(data) 
    
          
-    with open('json输出1.json','w+') as f1:
+    with open('json1.json','w+') as f1:
         str_data = json.dumps(data)
         f1.write(str_data)
-    with open('json输出2.json','w+') as f2:
+    with open('json2.json','w+') as f2:
         str_Head1 = json.dumps(Head1)
         f2.write(str_Head1)
-    with open('json输出3.json','w+') as f3:
+    with open('json3.json','w+') as f3:
         str_Head2 = json.dumps(Head2)
         f3.write(str_Head2)
          
