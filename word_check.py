@@ -8,17 +8,25 @@ Created on Thu Dec 28 16:53:32 2017
 from docx import Document
 import json
 import re
-document = Document('底层资产.docx') 
-def fun():
+document = Document() 
+def fun(document):
+   
     style_list = []
+    Head2 = []
+    Head3 = []
     paras = document.paragraphs
     for i in range(len(paras)):
-        for j in range(len(paras[i-1].runs)):      
+        for j in range(len(paras[i].runs)):      
 
             if paras[i].style.name == 'Normal':
                 style_list.append(paras[i].text)
 
-
+            if paras[i].style.name == 'Heading 2':
+                Head2.append(paras[i].text)
+        
+            if paras[i].style.name == 'Heading 3':
+                Head3.append(paras[i].text)
+    
     para_list = []
     for para in document.paragraphs:
         para_list.append(para.text)   
@@ -76,8 +84,10 @@ def fun():
         field_list = re.finditer(r'字段', p)
         for con in field_list:
             field = con.group()
-    data = {explain:style_list[0],table_space:style_list[1]+style_list[2]+style_list[3],
-            primary_key:style_list[4]+style_list[5],index:'null',field:Table_list}
+    
+    data = {Head2[0]+Head3[0]:[
+            {explain:style_list[0]},{table_space:style_list[1]+style_list[2]+style_list[3]},
+            {primary_key:style_list[4]+style_list[5]},{index:'null'},{field:Table_list}]}
     print(data)
             
-fun()
+fun(Document('底层资产.docx'))
