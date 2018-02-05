@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jan 11 09:37:17 2018
+Created on Wed Jan 10 16:46:47 2018
 
 @author: user
 """
 
 from docx import Document
 document = Document() 
-def table_3(document):
+def table(document,num):
 
     row1_list = []
     row_content = []
-    """获取第三个表格内容"""
-    table = document.tables[2]
+    """获取第一个表格内容"""
+    table = document.tables[num]
     """获取第一行标题"""
     row_1 = table.row_cells(0)
     """将第一行标题提取出来"""
@@ -29,23 +29,24 @@ def table_3(document):
             else:
                 """将内容提取出来"""
                 value = cell1.text
-#                print(value)
-                row_content.append(value)
-#    print(row1_list)
-#    print(row_content)
+                new_value = value.replace('\n', ' ')
+                row_content.append(new_value)
+#    print(len(row1_list))
+#    print(len(row_content))
 
     dict1={}
 
     for i in range(len(row1_list)): # 循环标题列表
         dict2={}
-        a_list=[j for j in range(i,len(row_content),3) ] # 循环内容列表，每5个存入一个列表
+        a_list=[j for j in range(i,len(row_content),len(row1_list)) ] # 循环内容列表
         for k in range(len(a_list)):  
             dict2[row1_list[i]+str(k)] = row_content[a_list[k]] # 构造内层字典
         dict1[row1_list[i]] = dict2     # 构造整体字典
               
 #    print(dict1)
     return dict1
+    
      
    
                 
-table_3(Document('示例详细设计.doc'))
+table(Document('示例详细设计.doc'),0)
