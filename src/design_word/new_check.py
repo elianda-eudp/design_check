@@ -148,19 +148,19 @@ def file(document):
     # print(new_design_file)
     a = str(new_design_file)
     global ret
-    ret = re.findall(r'Table--[\u4e00-\u9fa5]+\((.*?)\) 这个是文字说明', a)  # 提取table下面的表名
+    ret = re.findall(r'Table--[\u4e00-\u9fa5]+\((.*?)\)', a)  # 提取table下面的表名
     #    print(len(ret))
-    path = r'D:\Python363\check'  # 数据库所在文件位置
+    path = r'../../../project_data/tables_json/'  # 数据库所在文件位置
     files = os.listdir(path)  # 打开数据库所有目录列表
     data = []
     for name in ret:  # 遍历表名
         new_name = name + '.json'  # 将表名构造成json文件格式
         if new_name in files:  # 判断如果详细设计的表名和数据库的表名相等
-            data_file = open(new_name, encoding='utf-8')  # 打开名字相等的json文件
+            data_file = open(path+new_name, encoding='utf-8')  # 打开名字相等的json文件
             global new_data_file  # 全局变量
             new_data_file = json.load(data_file)
             data.append(new_data_file)
-file("程序名称(sql_to_csv).json")
+file("../../../project_data/programs_json/程序名称(sql_to_csv).json")
 
 def main(num):
     """取出操作字段、条件字段、排序字段、列名这些字段的key和value"""
@@ -238,4 +238,4 @@ def main(num):
     table.cell(3,2).paragraphs[0].add_run('\n'+error_val[4]).font.color.rgb =RGBColor(0xff, 0x00, 0x00)
 
     f.save('check.docx')
-main(1)
+main(0)
