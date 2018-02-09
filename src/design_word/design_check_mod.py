@@ -85,7 +85,7 @@ def main(prog_name='程序名称(sql_to_csv)'):
         
         data_info=' '.join(list(get_target_value('列名',data[m],[])[0].values()))
         
-        print(table_dict)
+        #print(table_dict)
 #        print(info1)
         
         f = Document()  # 创建table写入
@@ -93,23 +93,23 @@ def main(prog_name='程序名称(sql_to_csv)'):
         table = f.add_table(len(col_num)+1, 6)
         for i in range(len(col_num)):
 #            print('表名:'+table_name)
-            #print('操作字段:'+info1['操作字段' + str(i)])
-            #print('条件字段:'+info2['条件字段' + str(i)])
-            #print('排序字段:'+info3['排序字段' + str(i)])
-            #print('data_info:'+data_info)
+#            print('操作字段:'+info1['操作字段' + str(i)])
+#            print('条件字段:'+info2['条件字段' + str(i)])
+#            print('排序字段:'+info3['排序字段' + str(i)])
+#            print('data_info:'+data_info)
             """各字段与数据库表进行对比"""
             oper_str=(info1['操作字段' + str(i)]).split(' ')
-            #print(oper_str)
+            print(oper_str)
             oper_result=check_str(oper_str,data_info)
-            #print(oper_result)
+            print(oper_result)
             where_str=(info2['条件字段' + str(i)]).split(' ')
-            #print(where_str)
+            print(where_str)
             where_result=check_str(where_str,data_info)
-            #print(where_result)
+            print(where_result)
             order_str=(info3['排序字段' + str(i)]).split(' ')
-            #print(order_str)
+            print(order_str)
             order_result=check_str(order_str,data_info)
-            #print(order_result)
+            print(order_result)
         
 #            if  err_count=oper_result.count(1) + where_result.count(1) +  order_result.count(1):
             #    table = table.add_row(1)
@@ -133,7 +133,7 @@ def main(prog_name='程序名称(sql_to_csv)'):
 #        str_he1=str_he1+'\n'+error_val[m]
 #    table.cell(1,2).paragraphs[0].add_run(str_he1).font.color.rgb =RGBColor(0xff, 0x00, 0x00)
 
-    f.save('check.docx')
+        f.save('check.docx')
 
 main()
 

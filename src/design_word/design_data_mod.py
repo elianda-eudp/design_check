@@ -61,7 +61,7 @@ def head4_index_get(paras,max_i,min_i):
 
 def print_con(paras,index):
     for i in index:
-        print("    " + paras[i].text)
+        print(" " + paras[i].text)
         
 def normal_get(paras,max_i,min_i):
     list_normat=[]
@@ -71,7 +71,7 @@ def normal_get(paras,max_i,min_i):
     return list_normat
 
 
-def main(doc='./project_data/doc/示例详细设计.doc'):
+def main(doc='../../../project_data/doc/示例详细设计.doc'):
     document = Document(doc)
     paras = document.paragraphs
     lcount = []  
@@ -156,7 +156,7 @@ def main(doc='./project_data/doc/示例详细设计.doc'):
 #        print(head1_dict)
             
         pro_name=paras[ax].text
-        file_name='./project_data/programs_json/'+pro_name+'.json'
+        file_name='../../../project_data/programs_json/'+pro_name+'.json'
         #print(file_name)
         with open(file_name,'w+') as f:
             str_data = json.dumps(head3_dict)
