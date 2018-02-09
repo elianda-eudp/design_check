@@ -1,9 +1,4 @@
-
-# coding: utf-8
-
-# In[51]:
-
-
+import json
 from docx import Document
 
 def table(num,document):
@@ -43,10 +38,6 @@ def table(num,document):
 #    print(dict1)
     return dict1
 
-
-# In[52]:
-
-
 def head2_index_get(paras,max_i,min_i):
     head2_index_list=[]
     for i in range(min_i,max_i,1):
@@ -80,30 +71,19 @@ def normal_get(paras,max_i,min_i):
     return list_normat
 
 
-# In[75]:
-
-
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jan 12 09:55:52 2018
-
-@author: user
-"""
-
-from docx import Document
-import json
 def main(doc='./project_data/doc/示例详细设计.doc'):
     document = Document(doc)
     paras = document.paragraphs
-    lcount = []  # 存储所有段落的对象 
+    lcount = []  
     tables=0
     
+    """取出一级标题的角标""" 
     for i in range(len(paras)):
         if paras[i].style.name == 'Heading 1':
             lcount.append(i)
 #            print(paras[i].text)
 #    print(len(lcount))      
-    # 提取每一段的数据
+    """取出一级标题之间的内容"""
     for i in range(len(lcount)):
         ax = lcount[i]
         if i>=len(lcount)-1:
@@ -114,14 +94,14 @@ def main(doc='./project_data/doc/示例详细设计.doc'):
         head2_dict={}
         head2_index_list=head2_index_get(paras,bx,ax)
         #print_con(paras,head2_index_list)
+        """取出二级标题之间的内容"""
         for j in range(len(head2_index_list)):
             head2_min = head2_index_list[j]
             if j >= len(head2_index_list)-1:
                 head2_max = head2_index_list[j]
             else:
                 head2_max = head2_index_list[j+1]
-            head3_index_list=head3_index_get(paras,head2_max,head2_min)
-            
+            head3_index_list=head3_index_get(paras,head2_max,head2_min)            
             #print(paras[head2_min].text)
             #print_con(paras,head3_index_list)
             if '调用方法' in str(paras[head2_min].text) :
@@ -133,6 +113,7 @@ def main(doc='./project_data/doc/示例详细设计.doc'):
                     head2_dict[paras[head2_min].text]=''.join(normal).replace('\u3000', ' ')
             else:
                 head3_dict={}
+                """取出三级标题之间的内容"""
                 for z in range(len(head3_index_list)):
                     head3_min = head3_index_list[z]
                     if z>=len(head3_index_list)-1:
@@ -172,7 +153,7 @@ def main(doc='./project_data/doc/示例详细设计.doc'):
                 head2_dict[paras[head2_min].text]=head3_dict
             
         head1_dict[paras[ax].text]=head2_dict
-        print(head1_dict)
+#        print(head1_dict)
             
         pro_name=paras[ax].text
         file_name='./project_data/programs_json/'+pro_name+'.json'
@@ -181,18 +162,6 @@ def main(doc='./project_data/doc/示例详细设计.doc'):
             str_data = json.dumps(head3_dict)
             f.write(str_data)
             
-
-                
-
-                
-
-    
-    
-    
-
-
-# In[76]:
-
 
 main()
 
