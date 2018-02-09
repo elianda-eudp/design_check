@@ -159,7 +159,7 @@ def main(doc='../../../project_data/doc/示例详细设计.doc'):
         file_name='../../../project_data/programs_json/'+pro_name+'.json'
         #print(file_name)
         with open(file_name,'w+') as f:
-            str_data = json.dumps(head3_dict)
+            str_data = json.dumps(head1_dict)
             f.write(str_data)
             
 
