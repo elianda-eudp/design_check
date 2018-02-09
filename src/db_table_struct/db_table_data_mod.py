@@ -69,8 +69,7 @@ def main(doc='../../../project_data/doc/理财监管新规数据库优化11.9.do
     for i in range(len(paras)):
         if paras[i].style.name == 'Heading 2':
             lcount.append(i)
-#            print(paras[i].text)
-#    print(len(lcount))      
+#            print(paras[i].text)     
     """取出二级标题之间的内容"""
     for i in range(len(lcount)):
         if i+1 >= len(lcount):
@@ -79,7 +78,7 @@ def main(doc='../../../project_data/doc/理财监管新规数据库优化11.9.do
         bx = lcount[i+1]
         head3_index_list=head3_index_get(paras,bx,ax)
 #        print(paras[ax].text)
-        #print_con(paras,head3_index_list)
+#        print_con(paras,head3_index_list)
         """取出三级标题之间的内容"""
         for j in range(len(head3_index_list)):
             if j+1 >= len(head3_index_list):
@@ -88,8 +87,8 @@ def main(doc='../../../project_data/doc/理财监管新规数据库优化11.9.do
             head3_max = head3_index_list[j+1]
             head4_index_list=head4_index_get(paras,head3_max,head3_min)
             head4_dict={}
-            #print(paras[head3_min].text)
-            #print_con(paras,head4_index_list)
+#            print(paras[head3_min].text)
+#            print_con(paras,head4_index_list)
             """取出四级标题之间的内容"""
             for z in range(len(head4_index_list)):
                 if z+1 >= len(head4_index_list):
@@ -106,16 +105,17 @@ def main(doc='../../../project_data/doc/理财监管新规数据库优化11.9.do
                 else:
                     normal=normal_get(paras,head4_max,head4_min)
                     head4_dict[paras[head4_min].text]=''.join(normal).replace('\u3000', ' ')
-                    
+            print(head4_dict)
             head3_dict[paras[head3_min].text]=head4_dict
+        
             
             table_name=paras[head3_min].text.split('（')[0]
             file_name='../../../project_data/tables_json/'+table_name+'.json'
-            print(file_name)
+            
+#            print(file_name)
             with open(file_name,'w+') as f:
                 str_data = json.dumps(head3_dict)
-                f.write(str_data)
-            
+                f.write(str_data) 
 
 main()
 

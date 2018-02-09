@@ -12,13 +12,10 @@ def table(num,document):
     """将第一行标题提取出来"""
     for row in table.rows:
         for cell1 in row.cells:
-    #            print(cell.text)
             for cell2 in row_1:
-#                print(cell2.text)
                 if cell1.text == cell2.text:
                     key = cell1.text                 
                     row1_list.append(key)
-#                    print(key)
                     break
             else:
                 """将内容提取出来"""

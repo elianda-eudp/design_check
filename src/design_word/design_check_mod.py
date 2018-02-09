@@ -92,7 +92,7 @@ def main(prog_name='程序名称(sql_to_csv)'):
         f.add_paragraph('表名: '+ table_name)
         table = f.add_table(len(col_num)+1, 6)
         for i in range(len(col_num)):
-#            print('表名:'+table_name)
+            print('表名:'+table_name)
 #            print('操作字段:'+info1['操作字段' + str(i)])
 #            print('条件字段:'+info2['条件字段' + str(i)])
 #            print('排序字段:'+info3['排序字段' + str(i)])
