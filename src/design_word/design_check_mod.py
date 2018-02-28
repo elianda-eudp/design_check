@@ -135,5 +135,5 @@ def main(prog_name='程序名称(sql_to_csv)'):
 
         f.save('check.docx')
 
-main()
+main('程序名称(sql_to_csv)')
 
